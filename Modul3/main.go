@@ -2,7 +2,10 @@ package main
 
 import (
 	"fmt"
+	"strconv"
 	"strings"
+
+	"github.com/asvvvad/exchange"
 )
 
 func findDuplicate(word string) []string {
@@ -15,7 +18,7 @@ func findDuplicate(word string) []string {
 				found = true
 			}
 		}
-		if found == true {
+		if found {
 			dupFound := false
 			for k := 0; k < len(duplicate); k++ {
 				if duplicate[k] == string(word[i]) {
@@ -90,18 +93,28 @@ func deret(pilihan int, jumlah int) []int {
 	return bilDeret
 }
 
-func currency(angka string) string {
+func kasihTitik(digit string) []string {
 	var kelipatan int = 0
 	var arr []string
-	for i := len(angka); i > 0; i-- {
+	for i := len(digit); i > 0; i-- {
 		kelipatan++
-		arr = append([]string{string(angka[i-1])}, arr...)
+		arr = append([]string{string(digit[i-1])}, arr...)
 		if kelipatan%3 == 0 && i-1 != 0 {
 			arr = append([]string{"."}, arr...)
 		}
 	}
-	hasil := "Rp. " + strings.Join(arr[:], "")
-	return hasil
+	return arr
+}
+func currency(angka int) string {
+	var rupiah []string
+	var str = strconv.Itoa(angka)
+	rupiah = kasihTitik(str)
+	ex := exchange.New("IDR")
+	usd, _ := ex.ConvertTo("USD", angka)
+	// dolar = kasihTitik(string(usd))
+	hasilIDR := "Rp. " + strings.Join(rupiah[:], "") + ",00"
+	hasilUSD := fmt.Sprintf("$%.2f", usd)
+	return "Rupiah : " + hasilIDR + ", Dolar : " + hasilUSD
 }
 
 func hitungLuasKeliling(p float32, l float32) string {
@@ -119,7 +132,7 @@ func main() {
 1. program untuk mengetahui jumlah karakter yang diinput dan karakter yang sama. (A dan a dianggap beda)
 2. program Konversi suhu ruangan antara celcius, fahrenheit dan kelvin.
 3. program deret dengan jumlah deret sesuai dengan yang diinput
-4. program input output berupa konversi dari integer(numerik) menjadi format currency (Rupiah).
+4. program input output berupa konversi dari integer(numerik) menjadi format currency (Rupiah dan Dollar).
 5. program untuk menghitung Luas dan keliling dari persegi panjang.`)
 	fmt.Scanln(&pil)
 	switch pil {
@@ -150,7 +163,7 @@ func main() {
 		hasil := deret(pilihan, jumlah)
 		fmt.Println("Hasil Bilangan Deret", hasil)
 	case 4:
-		var angka string
+		var angka int
 		fmt.Print("Masukkan Angka : ")
 		fmt.Scanln(&angka)
 		hasil := currency(angka)
