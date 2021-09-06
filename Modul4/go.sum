@@ -1,0 +1,4 @@
+github.com/asvvvad/exchange v0.0.0-20200622145202-a6da1ed4965a h1:YI1Ar2VuzNruXerRVh2fp+ReyojouSP+iGYhRjBAR2k=
+github.com/asvvvad/exchange v0.0.0-20200622145202-a6da1ed4965a/go.mod h1:t+v2UzsF8W/GegZJXp5+pP1s7sZ2TiHUy1sC1nzTVrc=
+github.com/patrickmn/go-cache v2.1.0+incompatible h1:HRMgzkcYKYpi3C8ajMPV8OFXaaRUnok+kx1WdO15EQc=
+github.com/patrickmn/go-cache v2.1.0+incompatible/go.mod h1:3Qf8kWWT7OJRJbdiICTKqZju1ZixQ/KpMGzzAfe6+WQ=
