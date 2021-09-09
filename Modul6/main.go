@@ -103,7 +103,7 @@ func main() {
 			fmt.Print("Masukkan Rating Game (0.0 - 5.0) : ")
 			fmt.Scanln(&rating)
 			data = addData(data, judul, rating)
-			fmt.Println(data)
+			fmt.Println("Data berhasil ditambahkan")
 		case 2:
 			fmt.Println(viewAllData(data, "List Game \n"))
 			var idx int
