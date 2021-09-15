@@ -48,7 +48,6 @@ func viewAllData(data []game, title string) string {
 	for i := 0; i < len(data); i++ {
 		hasil += fmt.Sprintf("%d. %s rating: %.1f (%s) \n", i+1, data[i].judul, data[i].rating, data[i].rate)
 	}
-	hasil += "\n"
 	return hasil
 }
 
@@ -121,7 +120,13 @@ func main() {
 			hasil := searchByJudul(data, judul)
 			fmt.Println(hasil)
 		case 5:
-			top3 := data[0:3]
+			var top3 []game
+			i := len(data)
+			if i > 3 {
+				top3 = data[0:3]
+			} else {
+				top3 = data[0:i]
+			}
 			fmt.Print(viewAllData(top3, "List Top 3 Game \n"))
 		case 6:
 			var rate float32
